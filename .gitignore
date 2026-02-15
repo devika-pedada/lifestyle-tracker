@@ -24,6 +24,7 @@ share/python-wheels/
 MANIFEST
 
 # Logs
+logs/
 *.txt
 *.log
 
@@ -58,3 +59,9 @@ ENV/
 env.bak/
 venv.bak/
 
+# Cache
+.mypy_cache
+.ruff_cache
+
+
+NOTES.md
