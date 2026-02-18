@@ -2,9 +2,9 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 
 from app.db.session import get_db
-from app.schemas.auth_schema import RegisterResponse
+from app.schemas.auth_schema import LoginRequest, RegisterResponse
 from app.schemas.user_schema import UserRegisterRequest
-from app.services.user_service import create_user
+from app.services.user_service import authenticate_user, create_user
 
 router = APIRouter(prefix="/auth", tags=["Auth"])
 
@@ -18,3 +18,13 @@ def register_user(request: UserRegisterRequest, db: Session = Depends(get_db)):
 
     except ValueError as e:
         raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail=str(e))
+
+
+@router.post("/login")
+def login_user(request: LoginRequest, db: Session = Depends(get_db)):
+    token = authenticate_user(db=db, email=request.email, password=request.password)
+
+    if not token:
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid email or password")
+
+    return {"access_token": token, "token_type": "bearer"}
