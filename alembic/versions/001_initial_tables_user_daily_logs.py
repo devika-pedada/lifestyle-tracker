@@ -1,10 +1,11 @@
 """initial_tables_user_daily_logs
 
 Revision ID: 001
-Revises: 
+Revises:
 Create Date: 2026-02-16 21:49:46.569873
 
 """
+
 from typing import Sequence, Union
 
 import sqlalchemy as sa

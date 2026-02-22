@@ -1,7 +1,6 @@
-from app.core.logging import get_logger, setup_logging
+from app.core.logging import get_logger
 from app.db.session import engine
 
-setup_logging()
 logger = get_logger(__name__)
 
 

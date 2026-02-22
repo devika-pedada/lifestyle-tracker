@@ -4,12 +4,15 @@ from jose import jwt
 from passlib.context import CryptContext
 
 from app.core.config import settings
+from app.core.logging import get_logger
 
 SECRET_KEY = settings.SECRET_KEY
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 60
 
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+pwd_context = CryptContext(schemes=["bcrypt_sha256"], deprecated="auto")
+
+logger = get_logger(__name__)
 
 
 def hash_password(password: str) -> str:
