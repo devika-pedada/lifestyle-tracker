@@ -22,9 +22,9 @@ def register_user(request: UserRegisterRequest, db: Session = Depends(get_db)):
 
 @router.post("/login")
 def login_user(request: LoginRequest, db: Session = Depends(get_db)):
-    token = authenticate_user(db=db, email=request.email, password=request.password)
+    tokens = authenticate_user(db=db, email=request.email, password=request.password)
 
-    if not token:
+    if not tokens:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid email or password")
 
-    return {"access_token": token, "token_type": "bearer"}
+    return tokens
