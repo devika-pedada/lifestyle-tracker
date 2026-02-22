@@ -14,6 +14,9 @@ class Settings:
     DB_PORT: str = os.getenv("DB_PORT", "5432")
     DB_NAME: str = os.getenv("DB_NAME", "lifestyle_tracker")
     DATABASE_URL: str = f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
+
+    ACCESS_TOKEN_EXPIRE_MINUTES = 60
+    REFRESH_TOKEN_EXPIRE_DAYS = 7
     SECRET_KEY: str = os.getenv("SECRET_KEY", "secret_key")
 
 

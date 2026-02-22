@@ -34,7 +34,7 @@ def refresh_access_token(db: Session, refresh_token_value: str):
     db.add(new_refresh)
     db.commit()
 
-    access_token = create_access_token(data={"sub": str(user.id)})
-    logger.info(f"Refresh token rotated for user_id={user.id}")
+    access_token = create_access_token(data={"sub": str(user.email)})
+    logger.info(f"Refresh token rotated for user_id={user.email}")
 
     return {"access_token": access_token, "refresh_token": new_refresh_value}

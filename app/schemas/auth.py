@@ -13,3 +13,7 @@ class LoginRequest(BaseModel):
 
 class RefreshRequest(BaseModel):
     refresh_token: str
+
+
+class TokenData(BaseModel):
+    email: str | None = None

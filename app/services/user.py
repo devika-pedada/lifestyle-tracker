@@ -38,7 +38,7 @@ def authenticate_user(db: Session, email: str, password: str):
         logger.warning(f"Login failed: user not found or invalid password - {email}")
         return None
 
-    access_token = create_access_token(data={"sub": str(user.id)})
+    access_token = create_access_token(data={"sub": str(user.email)})
 
     refresh_token_value = create_refresh_token()
 
